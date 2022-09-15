@@ -16,11 +16,11 @@ public class App
 
         // loop until user quits
         while (command != 'q') {
-        printMenu();
-        System.out.print("Enter a command: ");
-        command = menuGetCommand(scan);
-
-        executeCommand(scan, command);
+            printMenu();
+            System.out.print("Enter a command: ");
+            command = menuGetCommand(scan);
+            //System.out.println("DEBUG running command " + (command) + " ...");
+            executeCommand(scan, command);
         }
 
         scan.close();
@@ -39,10 +39,20 @@ public class App
         System.out.printf("%s\t%s\n", command, desc);
     }
 
+    private static String roundNumber(double x) {
+        // This function will automatically round a given double variable to three digits 
+        // and return it as a string so that it can be printed
+        
+        return (String.format("%.3f", x));
+    }
+
     // prints the menu
     public static void printMenu() {
         printMenuLine();
         System.out.println("ChavviCalc");
+        printMenuLine();
+        System.out.println("A = " + roundNumber(a) + "     B = " + roundNumber(b));
+        //System.out.println(String.format("%.3f", a));
         printMenuLine();
 
         printMenuCommand('a', "Enter a value for A");
@@ -74,20 +84,22 @@ public class App
 
     private static Boolean enterValueBoolean(Scanner scan, Character variable) {
         Boolean success = true;
+        //System.out.print("Debug: variable " + variable);
         System.out.print("Please enter a value: ");
-        String rawInput = scan.nextLine();
         try {
+            Double numericalInput = Double.parseDouble(scan.nextLine());
             switch(variable) {
                 // the use of a switch statement makes the program more extensible.
                 // For example, if we wanted to add a third variable named 'c', it 
                 // wouldn't be too hard to add it into the program.
                 case 'a':
-                    a = Double.parseDouble(rawInput);
+                    a = numericalInput;
+                    break;
                 case 'b':
-                    b = Double.parseDouble(rawInput);
+                    b = numericalInput;
+                    break;
             }
-            System.out.println("The value has successfully been changed to " + a);
-            // todo; FIX THE ABOVE BUG BEFORE SUBMITTING
+            System.out.println("The value has successfully been changed to " + numericalInput);
         }
         catch(Exception e) {
             System.out.println("ERROR: You must enter a valid number");
@@ -98,15 +110,37 @@ public class App
     // calculator functions
     private static Boolean executeCommand(Scanner scan, Character command) {
         Boolean success = true;
-        System.out.println("Debug: " + command);
+        //System.out.println("Debug: " + command);
 
         switch (command) {
             case 'a':
                 enterValueBoolean(scan, 'a');
+                break;
             case 'b':
                 enterValueBoolean(scan, 'b');
+                break;
             case '+':
-                System.out.println("The sum of A and B is: " + (a+b));
+                System.out.println("A plus B is: " + roundNumber(a+b));
+                break;
+            case '-':
+                System.out.println("A minus B is: " + (a-b));
+                break;
+            case '*':
+                System.out.println("A times B is: " + (a*b));
+                break;
+            case '/':
+                if (b == 0.0) {
+                    System.out.println("ERROR: Division by zero is not allowed");
+                    success = false;    
+                }
+                else {
+                    System.out.println("A divided by B is: " + (a/b));
+                }
+                break;
+            case 'c':
+                a = 0.0;
+                b = 0.0;
+                System.out.println("The variables A and B have been reset to zero.");
                 break;
             case 'q':
                 System.out.println("Thank you for using Chavvi Calc");
