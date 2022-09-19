@@ -124,7 +124,8 @@ public class App
                 a += b;
                 break;
             case '-':
-                System.out.println("A minus B is: " + (a-b));
+                //System.out.println("A minus B is: " + (a-b));
+                a -= b;
                 break;
             case '*':
                 System.out.println("A times B is: " + (a*b));
