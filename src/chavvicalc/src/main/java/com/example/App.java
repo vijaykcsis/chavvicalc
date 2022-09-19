@@ -34,11 +34,12 @@ public class App
         );
     }
 
+    // This function is used when printing out the list of commands in the main menu
     private static void printMenuCommand(Character command, String desc) {
         System.out.printf("%s\t%s\n", command, desc);
     }
     
-    // rounds numbers when displayed
+    // This function is used to round numbers
     private static String roundNumber(float x) {        
         return (String.format("%.3f", x));
         // The program returns a string, not a float, because the value
@@ -62,7 +63,6 @@ public class App
         printMenuCommand('/', "Divide");
         printMenuCommand('c', "Clear");
         printMenuCommand('q', "Quit");
-
 
         printMenuLine();
     }
@@ -100,7 +100,6 @@ public class App
                     b = numericalInput;
                     break;
             }
-            System.out.println("The value has successfully been changed to " + roundNumber(numericalInput));
         }
         catch(Exception e) {
             System.out.println("ERROR: You must enter a valid number");
