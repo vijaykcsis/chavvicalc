@@ -14,7 +14,7 @@ public class App
         Scanner scan = new Scanner(System.in);
         Character command = '_';
 
-        // loop until user quits
+        // While loop until user quits
         while (command != 'q') {
             printMenu();
             System.out.print("Enter a command: ");
@@ -52,7 +52,6 @@ public class App
         System.out.println("ChavviCalc");
         printMenuLine();
         System.out.println("A = " + roundNumber(a) + "     B = " + roundNumber(b));
-        //System.out.println(String.format("%.3f", a));
         printMenuLine();
 
         printMenuCommand('a', "Enter a value for A");
@@ -75,14 +74,14 @@ public class App
         String rawInput = scan.nextLine();
 
         if (rawInput.length() > 0) {
-        rawInput = rawInput.toLowerCase();
-        command = rawInput.charAt(0);
+            rawInput = rawInput.toLowerCase();
+            command = rawInput.charAt(0);
         }
 
         return command;
     }
 
-    // This function is used when the user wants to enter a value for a variable
+    // This function is used when user wants to enter variable's value
     private static Boolean enterValueBoolean(Scanner scan, Character variable) {
         Boolean success = true;
         System.out.print("Please enter a value: ");
