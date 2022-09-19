@@ -137,7 +137,8 @@ public class App
                     success = false;    
                 }
                 else {
-                    System.out.println("A divided by B is: " + (a/b));
+                    a /= b;
+                    //System.out.println("A divided by B is: " + (a/b));
                 }
                 break;
             case 'c':
