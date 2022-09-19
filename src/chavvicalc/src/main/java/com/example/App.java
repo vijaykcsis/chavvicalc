@@ -128,7 +128,8 @@ public class App
                 a -= b;
                 break;
             case '*':
-                System.out.println("A times B is: " + (a*b));
+                //System.out.println("A times B is: " + (a*b));
+                a *= b;
                 break;
             case '/':
                 if (b == 0.0) {
