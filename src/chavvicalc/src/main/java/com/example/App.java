@@ -7,8 +7,8 @@ import java.util.*;
  */
 public class App 
 {
-    static double a = 0.000;
-    static double b = 0.000;
+    static float a = 0.000f;
+    static float b = 0.000f;
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
@@ -39,8 +39,8 @@ public class App
         System.out.printf("%s\t%s\n", command, desc);
     }
 
-    private static String roundNumber(double x) {
-        // This function will automatically round a given double variable to three digits 
+    private static String roundNumber(float x) {
+        // This function will automatically round a given float variable to three digits 
         // and return it as a string so that it can be printed
         
         return (String.format("%.3f", x));
@@ -87,7 +87,7 @@ public class App
         //System.out.print("Debug: variable " + variable);
         System.out.print("Please enter a value: ");
         try {
-            Double numericalInput = Double.parseDouble(scan.nextLine());
+            float numericalInput = Float.parseFloat(scan.nextLine());
             switch(variable) {
                 // the use of a switch statement makes the program more extensible.
                 // For example, if we wanted to add a third variable named 'c', it 
@@ -99,7 +99,7 @@ public class App
                     b = numericalInput;
                     break;
             }
-            System.out.println("The value has successfully been changed to " + numericalInput);
+            System.out.println("The value has successfully been changed to " + roundNumber(numericalInput));
         }
         catch(Exception e) {
             System.out.println("ERROR: You must enter a valid number");
@@ -120,7 +120,8 @@ public class App
                 enterValueBoolean(scan, 'b');
                 break;
             case '+':
-                System.out.println("A plus B is: " + roundNumber(a+b));
+                //System.out.println("A plus B is: " + roundNumber(a+b));
+                a += b;
                 break;
             case '-':
                 System.out.println("A minus B is: " + (a-b));
@@ -138,8 +139,8 @@ public class App
                 }
                 break;
             case 'c':
-                a = 0.0;
-                b = 0.0;
+                a = 0.000f;
+                b = 0.000f;
                 System.out.println("The variables A and B have been reset to zero.");
                 break;
             case 'q':
