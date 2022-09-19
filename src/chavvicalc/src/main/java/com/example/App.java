@@ -19,7 +19,6 @@ public class App
             printMenu();
             System.out.print("Enter a command: ");
             command = menuGetCommand(scan);
-            //System.out.println("DEBUG running command " + (command) + " ...");
             executeCommand(scan, command);
         }
 
@@ -38,12 +37,13 @@ public class App
     private static void printMenuCommand(Character command, String desc) {
         System.out.printf("%s\t%s\n", command, desc);
     }
-
-    private static String roundNumber(float x) {
-        // This function will automatically round a given float variable to three digits 
-        // and return it as a string so that it can be printed
-        
+    
+    // rounds numbers when displayed
+    private static String roundNumber(float x) {        
         return (String.format("%.3f", x));
+        // The program returns a string, not a float, because the value
+        // returned from this function is immediately used in a print 
+        // statement, not a calculation.
     }
 
     // prints the menu
@@ -82,16 +82,18 @@ public class App
         return command;
     }
 
+    // This function is used when the user wants to enter a value for a variable
     private static Boolean enterValueBoolean(Scanner scan, Character variable) {
         Boolean success = true;
-        //System.out.print("Debug: variable " + variable);
         System.out.print("Please enter a value: ");
+        // The use of the try-catch statement makes input validation easier.
         try {
             float numericalInput = Float.parseFloat(scan.nextLine());
             switch(variable) {
-                // the use of a switch statement makes the program more extensible.
+                // the use of a switch statement here makes the program more extensible.
                 // For example, if we wanted to add a third variable named 'c', it 
-                // wouldn't be too hard to add it into the program.
+                // wouldn't be too hard to add it into the program. (All you would
+                // have to do is add a third case to the switch statement below.)
                 case 'a':
                     a = numericalInput;
                     break;
@@ -107,11 +109,9 @@ public class App
         }
         return success;
     }
-    // calculator functions
+    // Calculator functions
     private static Boolean executeCommand(Scanner scan, Character command) {
         Boolean success = true;
-        //System.out.println("Debug: " + command);
-
         switch (command) {
             case 'a':
                 enterValueBoolean(scan, 'a');
@@ -120,15 +120,12 @@ public class App
                 enterValueBoolean(scan, 'b');
                 break;
             case '+':
-                //System.out.println("A plus B is: " + roundNumber(a+b));
                 a += b;
                 break;
             case '-':
-                //System.out.println("A minus B is: " + (a-b));
                 a -= b;
                 break;
             case '*':
-                //System.out.println("A times B is: " + (a*b));
                 a *= b;
                 break;
             case '/':
@@ -138,7 +135,6 @@ public class App
                 }
                 else {
                     a /= b;
-                    //System.out.println("A divided by B is: " + (a/b));
                 }
                 break;
             case 'c':
